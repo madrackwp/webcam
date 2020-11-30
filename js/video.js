@@ -1,24 +1,3 @@
-// (function(){
-//     var video = document.getElementById('video'),
-//         vendorUrl = window.URL || window.webkitURL;
-
-//     navigator.getMedia = navigator.getUserMedia ||
-//                          navigator.webkitGetUserMedia ||
-//                          navigator.mozGetUserMedia ||
-//                          navigator.msGetUserMedia;
-
-//     navigator.getMedia({
-//         video: true,
-//         audio: false
-//     }, function(stream){
-//         video.srcObject = stream;
-//         video.play();
-//     }, function(error){
-
-//     });
-// })();
-
-
 (function(){
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
         console.log("getUserMedia() not supported");
@@ -38,7 +17,9 @@
           });
 
     navigator.mediaDevices.getUserMedia({ audio: false, 
-                                        video: {deviceId: "7a04b37385f557c505fc4462f9cb5eea7de2045a15810ba3b096e0e45329f826"} //deviceId will default to the default camera on the device
+                                        video: {deviceId: "7a04b37385f557c505fc4462f9cb5eea7de2045a15810ba3b096e0e45329f826",
+                                                width: {min:1024, ideal: 1920},
+                                                height: {min:576, ideal: 1080}} //deviceId will default to the default camera on the device
                                         })
     .then(function(stream){
         var video = document.getElementById('video');
@@ -56,7 +37,9 @@
 
     //This is to access the second camera so that it can be play on the video
     navigator.mediaDevices.getUserMedia({ audio: false, 
-                                        video: {deviceId: "bceadf9ba7ee5cdf1c9d90980931bb7a961c00682011493748f8717cfa287b83"} //deviceId will default to the default camera on the device
+                                        video: {deviceId: "bceadf9ba7ee5cdf1c9d90980931bb7a961c00682011493748f8717cfa287b83",
+                                                width:1920,
+                                                height:1080} 
                                         })
     .then(function(stream){
         var video = document.getElementById('video2');
